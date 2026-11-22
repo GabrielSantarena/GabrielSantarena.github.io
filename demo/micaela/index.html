@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comida Casera Micaela — Encarga tu comida</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#b8571c; --brand-dark:#7f3a10; --cream:#fbf6ee; --ink:#2a2118; --muted:#7a6e62; --line:#eadfce;
+    --wa:#1f8a4c; --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.45;-webkit-font-smoothing:antialiased}
+  button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+  .serif{font-family:'Fraunces',Georgia,serif}
+
+  .demo-bar{background:var(--ink);color:#e8dccb;font-size:12px;text-align:center;padding:6px 12px}
+  header{position:sticky;top:0;z-index:20;background:rgba(251,246,238,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 18px;gap:10px}
+  .logo{display:flex;align-items:center;gap:10px}
+  .logo-mark{width:38px;height:38px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font-family:'Fraunces',serif;font-weight:600;font-size:18px}
+  .logo-name{font-family:'Fraunces',serif;font-weight:600;font-size:17px;line-height:1.1}
+  .logo-sub{font-size:12px;color:var(--muted)}
+  .cart-btn{display:flex;align-items:center;gap:8px;background:var(--brand);color:#fff;border-radius:999px;padding:9px 14px;font-size:14px;font-weight:500;white-space:nowrap}
+  .cart-count{background:#fff;color:var(--brand-dark);border-radius:999px;min-width:20px;height:20px;font-size:12px;display:grid;place-items:center;padding:0 6px;font-weight:600}
+
+  .hero{max-width:900px;margin:0 auto;padding:28px 18px 8px}
+  .open{display:inline-flex;align-items:center;gap:6px;background:#e6f4ea;color:#1f6b3a;font-size:13px;font-weight:500;padding:5px 11px;border-radius:999px}
+  .open::before{content:"";width:7px;height:7px;border-radius:50%;background:#2e9b55}
+  .hero h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(32px,7vw,48px);line-height:1.05;margin:14px 0 10px;letter-spacing:-.01em}
+  .hero h1 em{font-style:normal;color:var(--brand)}
+  .hero p{color:var(--muted);font-size:16px;max-width:520px}
+  .facts{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+  .fact{background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:13px}
+
+  .daily{max-width:900px;margin:22px auto 0;padding:0 18px}
+  .daily-card{background:var(--brand);color:#fff;border-radius:22px;padding:20px;display:flex;gap:16px;align-items:center}
+  .daily-card .ill{width:92px;height:92px;flex:0 0 auto;background:rgba(255,255,255,.14);border-radius:18px;display:grid;place-items:center}
+  .daily-card .ill svg{width:70%;height:70%}
+  .daily-card small{font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.85}
+  .daily-card h2{font-family:'Fraunces',serif;font-weight:600;font-size:22px;line-height:1.15;margin:4px 0}
+  .daily-card .row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px}
+  .daily-card .p{font-size:18px;font-weight:600}
+  .btn-white{background:#fff;color:var(--brand-dark);border-radius:999px;padding:9px 16px;font-weight:600;font-size:14px}
+
+  .menu{max-width:900px;margin:0 auto;padding:26px 18px 120px}
+  .chips{position:sticky;top:63px;z-index:10;background:var(--cream);display:flex;gap:8px;overflow-x:auto;padding:10px 0;scrollbar-width:none}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 15px;font-size:14px;font-weight:500}
+  .chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+  .cat-title{font-family:'Fraunces',serif;font-weight:600;font-size:24px;margin:22px 0 10px}
+  .item{display:flex;gap:14px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:12px;margin-bottom:10px}
+  .item .ill{width:76px;height:76px;flex:0 0 auto;border-radius:12px;background:var(--cream);display:grid;place-items:center}
+  .item .ill svg{width:72%;height:72%}
+  .item .info{flex:1;min-width:0}
+  .item h3{font-size:16px;font-weight:600}
+  .item p{font-size:13px;color:var(--muted);margin:2px 0 6px}
+  .item .price{font-weight:600}
+  .add{width:36px;height:36px;border-radius:50%;background:var(--brand);color:#fff;font-size:22px;line-height:1;flex:0 0 auto}
+  .stepper{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+  .stepper button{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);font-size:18px;line-height:1}
+  .stepper button.plus{background:var(--brand);color:#fff;border-color:var(--brand)}
+  .stepper span{min-width:16px;text-align:center;font-weight:600}
+
+  .info-sec{display:grid;gap:12px;margin-top:30px}
+  .box{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+  .box h3{font-family:'Fraunces',serif;font-weight:600;font-size:18px;margin-bottom:8px}
+  .box ul{list-style:none;display:grid;gap:6px;color:var(--muted);font-size:14px}
+  .pending{display:inline-block;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;background:#fff3d6;color:#8a5a00;border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:middle}
+  footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 18px 110px}
+
+  .floating{position:fixed;left:14px;right:14px;bottom:14px;z-index:30;display:none}
+  .floating.show{display:block}
+  .floating button{width:100%;background:var(--wa);color:#fff;border-radius:999px;padding:15px 18px;font-size:15px;font-weight:500;display:flex;justify-content:space-between;align-items:center;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+
+  .overlay{position:fixed;inset:0;background:rgba(42,33,24,.45);z-index:40;opacity:0;pointer-events:none;transition:opacity .2s}
+  .overlay.show{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;left:0;right:0;bottom:0;max-height:90vh;background:#fff;border-radius:22px 22px 0 0;z-index:50;transform:translateY(100%);transition:transform .25s ease;display:flex;flex-direction:column}
+  .drawer.show{transform:none}
+  .drawer-head{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid var(--line)}
+  .drawer-head h2{font-family:'Fraunces',serif;font-weight:600;font-size:22px}
+  .x{font-size:26px;width:36px;height:36px;line-height:1}
+  .drawer-body{overflow-y:auto;padding:12px 18px}
+  .line{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+  .line .n{flex:1}
+  .line .n small{display:block;color:var(--muted)}
+  .sum{display:flex;justify-content:space-between;padding:12px 0 2px;font-size:14px;color:var(--muted)}
+  .sum.total{font-size:17px;font-weight:600;color:var(--ink)}
+  .field{margin-top:14px}
+  .field label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+  .field input,.field textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px 12px;font:inherit;font-size:15px;background:#fff}
+  .field textarea{resize:vertical;min-height:58px}
+  .seg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .seg button{border:1px solid var(--line);border-radius:12px;padding:11px;font-size:14px;font-weight:500}
+  .seg button.on{background:var(--ink);border-color:var(--ink);color:#fff}
+  .drawer-foot{padding:14px 18px 20px;border-top:1px solid var(--line)}
+  .btn-wa{width:100%;background:var(--wa);color:#fff;border-radius:999px;padding:15px;font-size:15px;font-weight:600}
+  .err{color:#b42318;font-size:13px;margin-top:8px;display:none}
+  .empty{text-align:center;color:var(--muted);padding:30px 0}
+
+  .modal{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(.96);width:min(92vw,420px);background:#fff;border-radius:20px;z-index:60;padding:20px;opacity:0;pointer-events:none;transition:all .2s}
+  .modal.show{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
+  .modal h3{font-family:'Fraunces',serif;font-weight:600;font-size:21px;margin-bottom:6px}
+  .modal p{font-size:14px;color:var(--muted);margin-bottom:12px}
+  .bubble{background:#dcf8c6;border-radius:12px 12px 2px 12px;padding:12px 14px;font-size:14px;white-space:pre-wrap;margin-bottom:14px;max-height:42vh;overflow:auto}
+  .mrow{display:flex;gap:8px}
+  .mrow button{flex:1;border-radius:999px;padding:12px;font-weight:500}
+  .ghost{border:1px solid var(--line)}
+  .dark{background:var(--ink);color:#fff}
+  .toast{position:fixed;left:50%;bottom:88px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;font-size:14px;opacity:0;transition:all .2s;z-index:70;pointer-events:none;white-space:nowrap}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  @media (min-width:720px){
+    .info-sec{grid-template-columns:repeat(3,1fr)}
+    .drawer{left:auto;top:0;width:420px;max-height:none;border-radius:0;transform:translateX(100%)}
+    .drawer.show{transform:none}
+    .floating{left:auto;width:340px}
+  }
+</style>
+</head>
+<body>
+<div class="demo-bar">Propuesta de ejemplo para Comida Casera Micaela · menú, precios y horarios de muestra · no es la web oficial</div>
+
+<header>
+  <nav class="nav">
+    <div class="logo">
+      <div class="logo-mark">CM</div>
+      <div><div class="logo-name">Comida Casera Micaela</div><div class="logo-sub">Comida casera para llevar</div></div>
+    </div>
+    <button class="cart-btn" onclick="openCart()">Mi pedido <span class="cart-count" id="count">0</span></button>
+  </nav>
+</header>
+
+<section class="hero">
+  <span class="open">Abierto hoy · 9:00 a 15:30</span>
+  <h1>Encarga tu comida casera<br><em>sin tener que llamar</em></h1>
+  <p>Elige lo que quieres, marca la hora de recogida y envía el encargo por WhatsApp. Cuando llegues, está listo.</p>
+  <div class="facts"><span class="fact">C/ Páez de Rivera, 13</span><span class="fact">Recogida con hora</span><span class="fact">Efectivo, tarjeta y Bizum</span></div>
+</section>
+
+<section class="daily">
+  <div class="daily-card">
+    <div class="ill" id="dailyIll"></div>
+    <div style="flex:1;min-width:0">
+      <small>Especial de la casa</small>
+      <h2 id="dailyName"></h2>
+      <div class="row"><span class="p" id="dailyPrice"></span><button class="btn-white" onclick="add(DAILY.id)">Añadir</button></div>
+    </div>
+  </div>
+</section>
+
+<main class="menu">
+  <div class="chips" id="chips"></div>
+  <div id="list"></div>
+
+  <div class="info-sec">
+    <div class="box"><h3>Horarios</h3><ul><li>Todos los días: 9:00 a 15:30</li><li>Fines de semana, encarga con antelación</li></ul></div>
+    <div class="box"><h3>Envíos</h3><ul><li>Reparto en el barrio</li><li>Recogida en el local sin coste</li></ul></div>
+    <div class="box"><h3>Formas de pago</h3><ul><li>Efectivo y tarjeta</li><li>Bizum</li></ul></div>
+  </div>
+</main>
+
+<footer>Comida Casera Micaela · C/ Páez de Rivera, 13<br>Web hecha por Gabriel Santarena</footer>
+
+<div class="floating" id="floating"><button onclick="openCart()"><span id="floatTxt">Ver pedido</span><span id="floatTotal"></span></button></div>
+<div class="overlay" id="overlay" onclick="overlayClick()"></div>
+
+<aside class="drawer" id="drawer" aria-label="Mi pedido">
+  <div class="drawer-head"><h2>Mi pedido</h2><button class="x" onclick="closeAll()" aria-label="Cerrar">×</button></div>
+  <div class="drawer-body" id="cartBody"></div>
+  <div class="drawer-foot">
+    <button class="btn-wa" onclick="sendOrder()">Enviar pedido por WhatsApp</button>
+    <div class="err" id="err"></div>
+  </div>
+</aside>
+
+<div class="modal" id="modal" role="dialog" aria-labelledby="mTitle">
+  <h3 id="mTitle">Así os llega el encargo</h3>
+  <p>En la versión final este botón abre el WhatsApp del local con el pedido ya escrito.</p>
+  <div class="bubble" id="bubble"></div>
+  <div class="mrow"><button class="ghost" onclick="closeModal()">Cerrar</button><button class="dark" onclick="copyMsg()">Copiar mensaje</button></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ===== CONFIGURACIÓN: completar con los datos reales del local ===== */
+const CONFIG = { whatsapp: "", tienda: "Comida Casera Micaela", envio: 0 };   // whatsapp ej: "5492604123456"
+
+/* Menú: cambiar nombres, descripciones y precios por los reales. */
+const MENU = [
+  {id:1,  cat:"Pollos",       nombre:"Pollo asado entero con patatas", desc:"Con su salsa de asado y pan",          precio:14.50, icono:"pollo", diario:true},
+  {id:2,  cat:"Pollos",       nombre:"Medio pollo asado con patatas",  desc:"Con su salsa de asado",                precio:8.50,  icono:"pollo"},
+  {id:3,  cat:"Pollos",       nombre:"Picantón al ajillo",             desc:"Pollo pequeño con ajo y perejil",      precio:9.90,  icono:"pollo"},
+  {id:4,  cat:"Arroces",      nombre:"Paella mixta (ración)",          desc:"Solo sábados y domingos",              precio:7.50,  icono:"pasta"},
+  {id:5,  cat:"Arroces",      nombre:"Arroz negro (ración)",           desc:"Con alioli casero",                    precio:7.90,  icono:"pasta"},
+  {id:6,  cat:"Guisos",       nombre:"Lentejas de la abuela",          desc:"Con chorizo · 500 g",                  precio:6.50,  icono:"pasta"},
+  {id:7,  cat:"Guisos",       nombre:"Albóndigas en salsa",            desc:"Con patatas · 6 unidades",             precio:7.20,  icono:"mila"},
+  {id:8,  cat:"Para picar",   nombre:"Croquetas caseras",              desc:"Jamón o pollo · 8 unidades",           precio:6.00,  icono:"empanada"},
+  {id:9,  cat:"Para picar",   nombre:"Ensaladilla rusa",               desc:"Bandeja de 500 g",                     precio:5.50,  icono:"ensalada"},
+  {id:10, cat:"Guarniciones", nombre:"Patatas asadas",                 desc:"Ración grande",                        precio:3.50,  icono:"papas"},
+  {id:11, cat:"Guarniciones", nombre:"Pimientos asados",               desc:"Ración",                               precio:3.00,  icono:"ensalada"},
+  {id:12, cat:"Postres",      nombre:"Tarta de queso casera",          desc:"Porción",                              precio:3.80,  icono:"flan"}
+];
+
+const ICONS = {
+  pollo:'<path d="M18 74 Q4 50 20 28 Q40 8 64 26 Q78 40 66 58 L54 66 Q38 86 18 74 Z"/><path d="M30 46 Q36 36 46 34"/><path d="M64 60 L80 76"/><circle cx="85" cy="74" r="5"/><circle cx="78" cy="82" r="5"/>',
+  mila:'<ellipse cx="50" cy="62" rx="36" ry="13"/><path d="M26 58 Q34 40 54 42 Q72 44 74 56 Q60 64 40 64 Z"/><circle cx="62" cy="50" r="4"/>',
+  sandwich:'<path d="M18 46 Q50 22 82 46 Z"/><path d="M16 52 Q30 48 44 54 Q58 48 84 52"/><path d="M18 58 L82 58 L82 66 Q50 72 18 66 Z"/>',
+  empanada:'<path d="M16 62 Q22 30 50 30 Q78 30 84 62 Z"/><path d="M22 60 Q26 56 30 60 Q34 56 38 60 Q42 56 46 60 Q50 56 54 60 Q58 56 62 60 Q66 56 70 60 Q74 56 78 60"/>',
+  pasta:'<path d="M16 50 L84 50 Q80 76 50 78 Q20 76 16 50 Z"/><path d="M30 50 Q34 36 44 44 Q50 32 58 44 Q66 36 70 50"/>',
+  papas:'<path d="M30 46 L70 46 L64 82 L36 82 Z"/><path d="M36 46 L32 22 M44 46 L42 18 M52 46 L54 20 M60 46 L64 24"/>',
+  ensalada:'<path d="M16 50 L84 50 Q80 76 50 78 Q20 76 16 50 Z"/><circle cx="36" cy="44" r="7"/><circle cx="56" cy="40" r="8"/><path d="M66 46 Q72 34 78 44"/>',
+  flan:'<path d="M32 40 L68 40 L76 70 L24 70 Z"/><path d="M32 40 Q50 32 68 40"/><ellipse cx="50" cy="72" rx="34" ry="6"/>'
+};
+const svg = (k) => `<svg viewBox="0 0 100 100" fill="none" stroke="var(--brand-dark)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">${ICONS[k]||""}</svg>`;
+const svgW = (k) => `<svg viewBox="0 0 100 100" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">${ICONS[k]||""}</svg>`;
+const money = (n) => n==null ? "Consultar precio" : n.toLocaleString("es-ES",{minimumFractionDigits:2,maximumFractionDigits:2}) + "\u00a0€";
+const unpriced = () => Object.keys(cart).some(id=>MENU.find(m=>m.id==id).precio==null);
+
+const DAILY = MENU.find(m=>m.diario);
+const cart = {};
+let filter = "Todo", entrega = "Recoger en el local", pago = "Efectivo", hora = "";
+const HORAS = []; for(let h=9; h<=15; h++){ for(const mm of ["00","15","30","45"]){ if(h===15 && mm!=="00" && mm!=="15") continue; HORAS.push(h+":"+mm); } }
+
+document.getElementById("dailyIll").innerHTML = svgW(DAILY.icono);
+document.getElementById("dailyName").textContent = DAILY.nombre;
+document.getElementById("dailyPrice").textContent = DAILY.etiqueta || money(DAILY.precio);
+
+function renderChips(){
+  const cats = ["Todo",...new Set(MENU.map(m=>m.cat))];
+  document.getElementById("chips").innerHTML = cats.map(c=>`<button class="chip ${c===filter?'on':''}" onclick="setFilter('${c}')">${c}</button>`).join("");
+}
+function setFilter(c){ filter=c; renderChips(); renderList(); }
+
+function control(m){
+  const q = cart[m.id]||0;
+  if(!q) return `<button class="add" onclick="add(${m.id})" aria-label="Agregar ${m.nombre}">+</button>`;
+  return `<div class="stepper"><button onclick="chg(${m.id},-1)" aria-label="Quitar uno">−</button><span>${q}</span><button class="plus" onclick="chg(${m.id},1)" aria-label="Sumar uno">+</button></div>`;
+}
+function renderList(){
+  const cats = filter==="Todo" ? [...new Set(MENU.map(m=>m.cat))] : [filter];
+  document.getElementById("list").innerHTML = cats.map(c=>`<h2 class="cat-title">${c}</h2>` + MENU.filter(m=>m.cat===c).map(m=>`
+    <div class="item"><div class="ill">${svg(m.icono)}</div>
+      <div class="info"><h3>${m.nombre}</h3><p>${m.desc}</p><span class="price">${money(m.precio)}</span></div>
+      ${control(m)}</div>`).join("")).join("");
+}
+
+function add(id){ cart[id]=(cart[id]||0)+1; const m=MENU.find(x=>x.id===id); toast(m.nombre+" añadido"); refresh(); }
+function chg(id,d){ cart[id]=(cart[id]||0)+d; if(cart[id]<=0) delete cart[id]; refresh(); if(document.getElementById("drawer").classList.contains("show")) renderCart(); }
+function subtotal(){ return Object.entries(cart).reduce((s,[id,q])=>s+(MENU.find(m=>m.id==id).precio||0)*q,0); }
+function units(){ return Object.values(cart).reduce((a,b)=>a+b,0); }
+
+function refresh(){
+  renderList();
+  const n = units();
+  document.getElementById("count").textContent = n;
+  document.getElementById("floatTxt").textContent = `Ver pedido (${n})`;
+  document.getElementById("floatTotal").textContent = unpriced() ? "Ver y enviar →" : money(subtotal());
+  document.getElementById("floating").classList.toggle("show", n>0 && !document.getElementById("drawer").classList.contains("show"));
+}
+
+function renderCart(){
+  const body = document.getElementById("cartBody");
+  const keep = {nombre:val("nombre"), dir:val("dir"), nota:val("nota")};
+  if(!units()){ body.innerHTML = `<div class="empty">Todavía no has añadido nada.</div>`; return; }
+  const envio = entrega==="Envío a domicilio" ? CONFIG.envio : 0;
+  body.innerHTML = Object.entries(cart).map(([id,q])=>{ const m=MENU.find(x=>x.id==id);
+    return `<div class="line"><div class="n">${m.nombre}<small>${m.precio==null?"Precio a confirmar":money(m.precio)+" c/u"}</small></div>
+      <div class="stepper"><button onclick="chg(${m.id},-1)" aria-label="Quitar uno">−</button><span>${q}</span><button class="plus" onclick="chg(${m.id},1)" aria-label="Sumar uno">+</button></div></div>`;}).join("")
+  + (unpriced() ? "" : `<div class="sum"><span>Subtotal</span><span>${money(subtotal())}</span></div>`)
+  + (entrega==="Envío a domicilio" ? `<div class="sum"><span>Envío</span><span>${envio? money(envio) : "a confirmar"}</span></div>` : "")
+  + `<div class="sum total"><span>Total</span><span>${unpriced() ? "a confirmar" : money(subtotal()+envio)}</span></div>
+    <div class="field"><label for="nombre">Tu nombre</label><input id="nombre" placeholder="Lucía" value="${esc(keep.nombre)}"></div>
+    <div class="field"><label>Entrega</label><div class="seg">
+      <button class="${entrega==='Recoger en el local'?'on':''}" onclick="setE('Recoger en el local')">Recoger en el local</button>
+      <button class="${entrega==='Envío a domicilio'?'on':''}" onclick="setE('Envío a domicilio')">A domicilio</button></div></div>
+    <div class="field"><label for="hora">${entrega==='Envío a domicilio'?'Hora de entrega':'Hora de recogida'}</label><select id="hora" onchange="hora=this.value" style="width:100%;border:1px solid var(--line);border-radius:12px;padding:11px 12px;font:inherit;font-size:15px;background:#fff"><option value="">Elige una hora</option>${HORAS.map(h=>`<option ${hora===h?'selected':''}>${h}</option>`).join("")}</select></div>
+    ${entrega==='Envío a domicilio'?`<div class="field"><label for="dir">Dirección</label><input id="dir" placeholder="Calle, número y barrio" value="${esc(keep.dir)}"></div>`:""}
+    <div class="field"><label>Pago</label><div class="seg">
+      <button class="${pago==='Efectivo'?'on':''}" onclick="setP('Efectivo')">Efectivo</button>
+      <button class="${pago==='Bizum'?'on':''}" onclick="setP('Bizum')">Bizum</button></div></div>
+    <div class="field"><label for="nota">Aclaraciones (opcional)</label><textarea id="nota" placeholder="Pollo bien hecho, sin salsa…">${esc(keep.nota)}</textarea></div>`;
+}
+const val = (id) => (document.getElementById(id)?.value || "");
+const esc = (s) => s.replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");
+function setE(e){ entrega=e; renderCart(); }
+function setP(p){ pago=p; renderCart(); }
+
+function openCart(){ renderCart(); document.getElementById("err").style.display="none";
+  document.getElementById("overlay").classList.add("show"); document.getElementById("drawer").classList.add("show");
+  document.getElementById("floating").classList.remove("show"); }
+function closeAll(){ document.getElementById("overlay").classList.remove("show"); document.getElementById("drawer").classList.remove("show"); closeModal(); refresh(); }
+
+function buildMsg(){
+  const lines = Object.entries(cart).map(([id,q])=>{ const m=MENU.find(x=>x.id==id); return m.precio==null ? `• ${q} x ${m.nombre}` : `• ${q} x ${m.nombre} — ${money(m.precio*q)}`; });
+  let msg = `¡Hola ${CONFIG.tienda}! Quiero hacer un encargo:\n${lines.join("\n")}\n\nTotal: ${unpriced() ? "a confirmar" : money(subtotal()) + (entrega==="Envío a domicilio"?" + envío":"")}\n\nNombre: ${val("nombre").trim()}\nEntrega: ${entrega}`;
+  if(entrega==="Envío a domicilio") msg += `\nDirección: ${val("dir").trim()}`;
+  msg += `\n${entrega==="Envío a domicilio"?"Hora de entrega":"Hora de recogida"}: ${hora}`;
+  msg += `\nPago: ${pago}`;
+  if(val("nota").trim()) msg += `\nAclaraciones: ${val("nota").trim()}`;
+  return msg + `\n\n(Pedido enviado desde la web)`;
+}
+function sendOrder(){
+  const err = document.getElementById("err");
+  const fail = (t,id)=>{ err.textContent=t; err.style.display="block"; if(id) document.getElementById(id)?.focus(); };
+  if(!units()) return fail("Añade al menos un plato.");
+  if(!val("nombre").trim()) return fail("Escribe tu nombre.","nombre");
+  if(!hora) return fail("Elige la hora.","hora");
+  if(entrega==="Envío a domicilio" && !val("dir").trim()) return fail("Escribe la dirección de entrega.","dir");
+  err.style.display="none";
+  const msg = buildMsg();
+  if(CONFIG.whatsapp){ window.location.href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`; return; }
+  document.getElementById("bubble").textContent = msg;
+  document.getElementById("modal").classList.add("show");
+  document.getElementById("overlay").style.zIndex = 55;
+}
+function closeModal(){ document.getElementById("modal").classList.remove("show"); document.getElementById("overlay").style.zIndex=""; }
+function overlayClick(){ if(document.getElementById("modal").classList.contains("show")) closeModal(); else closeAll(); }
+async function copyMsg(){ try{ await navigator.clipboard.writeText(buildMsg()); toast("Mensaje copiado"); }catch(e){ toast("No se pudo copiar"); } }
+let tt; function toast(t){ const el=document.getElementById("toast"); el.textContent=t; el.classList.add("show"); clearTimeout(tt); tt=setTimeout(()=>el.classList.remove("show"),1500); }
+
+renderChips(); refresh();
+</script>
+</body>
+</html>
