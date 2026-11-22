@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luna Boutique — Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#111111; --paper:#ffffff; --sand:#f4f1ec; --line:#e4e0da; --muted:#6f6a64;
+    --wa:#1f8a4c; --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Jost',system-ui,sans-serif;font-weight:400;color:var(--ink);background:var(--paper);line-height:1.5;-webkit-font-smoothing:antialiased}
+  button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+  a{color:inherit}
+  .display{font-family:'Italiana',serif;font-weight:400;letter-spacing:.04em}
+
+  .demo-bar{background:var(--sand);color:var(--muted);font-size:12px;text-align:center;padding:6px 12px;letter-spacing:.02em}
+
+  header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 20px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .brand svg{width:30px;height:30px}
+  .brand-name{font-family:'Italiana',serif;font-size:22px;letter-spacing:.32em;line-height:1}
+  .brand-sub{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+  .nav-links{display:none;gap:28px;font-size:14px}
+  .nav-links a{text-decoration:none;color:var(--muted)}
+  .nav-links a:hover{color:var(--ink)}
+  .cart-btn{position:relative;display:flex;align-items:center;gap:8px;border:1px solid var(--ink);border-radius:999px;padding:8px 14px;font-size:14px}
+  .cart-count{background:var(--ink);color:#fff;border-radius:999px;min-width:20px;height:20px;font-size:12px;display:grid;place-items:center;padding:0 6px}
+
+  .hero{background:var(--ink);color:#fff;padding:64px 20px 72px;text-align:center;position:relative;overflow:hidden}
+  .hero .tri{position:absolute;right:-60px;bottom:-80px;width:320px;opacity:.08}
+  .hero .eyebrow{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#bdb7ae}
+  .hero h1{font-family:'Italiana',serif;font-weight:400;font-size:clamp(38px,8vw,72px);line-height:1.05;margin:14px 0 18px}
+  .hero p{color:#d6d1ca;font-size:16px;max-width:460px;margin:0 auto 28px;font-weight:300}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:13px 26px;font-size:15px;text-decoration:none;transition:transform .15s}
+  .btn:active{transform:scale(.98)}
+  .btn-light{background:#fff;color:var(--ink)}
+  .btn-dark{background:var(--ink);color:#fff}
+  .btn-wa{background:var(--wa);color:#fff;width:100%}
+  .pillars{display:flex;justify-content:center;gap:18px;margin-top:32px;font-size:13px;color:#bdb7ae;letter-spacing:.12em;text-transform:uppercase}
+
+  section{padding:56px 20px}
+  .wrap{max-width:1100px;margin:0 auto}
+  .sec-title{font-family:'Italiana',serif;font-size:34px;font-weight:400;margin-bottom:6px}
+  .sec-sub{color:var(--muted);margin-bottom:24px;font-size:15px}
+
+  .secs{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--ink);border-radius:999px;padding:3px;margin-bottom:14px;max-width:320px}
+  .secs button{border-radius:999px;padding:9px;font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+  .secs button.on{background:var(--ink);color:#fff}
+  .chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:22px;scrollbar-width:none}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto;border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:14px;background:#fff;transition:all .15s}
+  .chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+
+  .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  .card{display:flex;flex-direction:column}
+  .ph{position:relative;aspect-ratio:4/5;border-radius:var(--radius);display:grid;place-items:center;overflow:hidden}
+  .ph svg{width:52%;height:52%}
+  .ph img{width:100%;height:100%;object-fit:cover}
+  .tag{position:absolute;top:10px;left:10px;background:var(--ink);color:#fff;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:4px 9px;border-radius:999px}
+  .card h3{font-weight:400;font-size:15px;margin-top:10px}
+  .price{font-size:13px;color:var(--muted)}
+  .sizes{display:flex;gap:6px;margin:8px 0 10px;flex-wrap:wrap}
+  .size{min-width:34px;height:30px;border:1px solid var(--line);border-radius:8px;font-size:12px;padding:0 6px}
+  .size.on{border-color:var(--ink);background:var(--ink);color:#fff}
+  .add{border:1px solid var(--ink);border-radius:999px;padding:9px 0;font-size:14px;margin-top:auto;transition:all .15s}
+  .add.done{background:var(--ink);color:#fff}
+
+  .steps{display:grid;gap:14px}
+  .step{background:var(--sand);border-radius:var(--radius);padding:22px}
+  .step .n{font-family:'Italiana',serif;font-size:30px;line-height:1}
+  .step h3{font-weight:500;font-size:16px;margin:8px 0 4px}
+  .step p{color:var(--muted);font-size:14px}
+
+  .info{display:grid;gap:14px}
+  .box{border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .box h3{font-weight:500;font-size:16px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .box ul{list-style:none;display:grid;gap:8px;font-size:14px;color:var(--muted)}
+  .pending{display:inline-block;font-size:11px;background:#fff6e0;color:#8a5a00;border-radius:999px;padding:2px 8px;margin-left:6px;letter-spacing:.04em}
+
+  footer{background:var(--ink);color:#bdb7ae;padding:40px 20px 110px;text-align:center;font-size:13px}
+  footer .brand-name{color:#fff}
+  footer a{color:#fff}
+
+  .floating{position:fixed;left:16px;right:16px;bottom:16px;z-index:30;display:none}
+  .floating.show{display:block}
+  .floating button{width:100%;background:var(--wa);color:#fff;border-radius:999px;padding:15px;font-size:15px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+
+  .overlay{position:fixed;inset:0;background:rgba(17,17,17,.45);z-index:40;opacity:0;pointer-events:none;transition:opacity .2s}
+  .overlay.show{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;left:0;right:0;bottom:0;max-height:88vh;background:#fff;border-radius:22px 22px 0 0;z-index:50;transform:translateY(100%);transition:transform .25s ease;display:flex;flex-direction:column}
+  .drawer.show{transform:none}
+  .drawer-head{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--line)}
+  .drawer-head h2{font-family:'Italiana',serif;font-weight:400;font-size:26px}
+  .x{font-size:26px;line-height:1;width:36px;height:36px}
+  .drawer-body{overflow-y:auto;padding:16px 20px}
+  .line{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+  .line .mini{width:52px;height:64px;border-radius:10px;display:grid;place-items:center;flex:0 0 auto}
+  .line .mini svg{width:60%;height:60%}
+  .line .meta{flex:1;font-size:14px}
+  .line .meta small{color:var(--muted);display:block}
+  .qty{display:flex;align-items:center;gap:8px}
+  .qty button{width:28px;height:28px;border:1px solid var(--line);border-radius:8px}
+  .field{margin-top:16px}
+  .field label{font-size:13px;color:var(--muted);display:block;margin-bottom:6px}
+  .field input{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px 12px;font:inherit;font-size:15px}
+  .seg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .seg button{border:1px solid var(--line);border-radius:10px;padding:11px;font-size:14px}
+  .seg button.on{border-color:var(--ink);background:var(--ink);color:#fff}
+  .drawer-foot{padding:16px 20px 22px;border-top:1px solid var(--line)}
+  .empty{text-align:center;color:var(--muted);padding:30px 0}
+  .err{color:#b42318;font-size:13px;margin-top:8px;display:none}
+
+  .modal{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(.96);width:min(92vw,420px);background:#fff;border-radius:20px;z-index:60;padding:22px;opacity:0;pointer-events:none;transition:all .2s}
+  .modal.show{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
+  .modal h3{font-family:'Italiana',serif;font-weight:400;font-size:24px;margin-bottom:6px}
+  .modal p{font-size:14px;color:var(--muted);margin-bottom:14px}
+  .bubble{background:#dcf8c6;border-radius:12px 12px 2px 12px;padding:12px 14px;font-size:14px;white-space:pre-wrap;margin-bottom:16px;max-height:40vh;overflow:auto}
+  .row{display:flex;gap:8px}
+  .row .btn{flex:1;padding:12px}
+  .btn-ghost{border:1px solid var(--line)}
+
+  .toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;font-size:14px;opacity:0;transition:all .2s;z-index:70;pointer-events:none}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  @media (min-width:720px){
+    .nav-links{display:flex}
+    .grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+    .steps{grid-template-columns:repeat(3,1fr)}
+    .info{grid-template-columns:repeat(3,1fr)}
+    .drawer{left:auto;top:0;width:420px;max-height:none;border-radius:0;transform:translateX(100%)}
+    .drawer.show{transform:none}
+    .floating{left:auto;width:340px}
+  }
+  @media (min-width:1000px){ .grid{grid-template-columns:repeat(4,minmax(0,1fr))} }
+</style>
+</head>
+<body>
+
+<div class="demo-bar">Proyecto demo · marca y productos ficticios</div>
+
+<header>
+  <nav class="nav">
+    <a class="brand" href="#inicio" aria-label="Luna inicio">
+      <svg viewBox="0 0 40 40" fill="none" stroke="#111" stroke-width="1.6" aria-hidden="true"><path d="M26 6 A15 15 0 1 0 34 26 A12 12 0 1 1 26 6 Z"/></svg>
+      <div><div class="brand-name">LUNA</div><div class="brand-sub">Boutique</div></div>
+    </a>
+    <div class="nav-links">
+      <a href="#catalogo">Catálogo</a><a href="#como-comprar">Cómo comprar</a><a href="#info">Pagos y local</a>
+    </div>
+    <button class="cart-btn" onclick="openCart()" aria-label="Ver pedido">
+      Pedido <span class="cart-count" id="count">0</span>
+    </button>
+  </nav>
+</header>
+
+<main id="inicio">
+  <div class="hero">
+    <svg class="tri" viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width=".8" aria-hidden="true"><path d="M26 6 A15 15 0 1 0 34 26 A12 12 0 1 1 26 6 Z"/></svg>
+    <div class="eyebrow">Indumentaria · Mujer y hombre</div>
+    <h1>Outfits para el día<br>y la noche</h1>
+    <p>Elegí tus prendas, armá tu pedido y mandalo por WhatsApp. Te atendemos personalmente.</p>
+    <a class="btn btn-light" href="#catalogo">Ver catálogo</a>
+    <div class="pillars"><span>Bueno</span>·<span>Bonito</span>·<span>Barato</span></div>
+  </div>
+
+  <section id="catalogo">
+    <div class="wrap">
+      <h2 class="sec-title">Catálogo</h2>
+      <p class="sec-sub">Tocá "Agregar" en lo que te guste y te lo reservamos.</p>
+      <div class="secs" id="secs"></div>
+      <div class="chips" id="chips"></div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section id="como-comprar" style="background:#fff;padding-top:8px">
+    <div class="wrap">
+      <h2 class="sec-title">Cómo comprar</h2>
+      <p class="sec-sub">Simple, sin registrarte.</p>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><h3>Elegí</h3><p>Agregá las prendas que te gusten con tu talle.</p></div>
+        <div class="step"><div class="n">2</div><h3>Enviá tu pedido</h3><p>Se arma solo un mensaje de WhatsApp con todo lo que elegiste.</p></div>
+        <div class="step"><div class="n">3</div><h3>Coordinamos</h3><p>Te confirmamos stock, precio y si retirás o te lo enviamos.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="info" style="padding-top:8px">
+    <div class="wrap">
+      <h2 class="sec-title">Pagos y local</h2>
+      <p class="sec-sub">Todo lo que necesitás saber antes de comprar.</p>
+      <div class="info">
+        <div class="box">
+          <h3>Medios de pago</h3>
+          <ul><li>Efectivo</li><li>Transferencia</li><li>Tarjetas de débito y crédito</li></ul>
+        </div>
+        <div class="box">
+          <h3>Nuestros locales</h3>
+          <ul><li><b style="color:var(--ink);font-weight:500">Mujer:</b> Calle Mayor 120</li><li><b style="color:var(--ink);font-weight:500">Hombre:</b> Av. Central 845</li><li>Lunes a sábado, 10 a 20 h</li></ul>
+        </div>
+        <div class="box">
+          <h3>Seguinos</h3>
+          <ul><li>@luna.boutique</li><li>Novedades y nuevos ingresos todas las semanas</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="brand-name" style="font-size:20px">LUNA</div>
+  <p style="margin-top:10px">Boutique · Mujer y hombre</p>
+  <p style="margin-top:18px;font-size:12px">Web hecha por Gabriel Santarena</p>
+</footer>
+
+<div class="floating" id="floating"><button onclick="openCart()"><span id="floatTxt">Tu pedido (0)</span><span>Ver y enviar →</span></button></div>
+
+<div class="overlay" id="overlay" onclick="overlayClick()"></div>
+
+<aside class="drawer" id="drawer" aria-label="Tu pedido">
+  <div class="drawer-head"><h2>Tu pedido</h2><button class="x" onclick="closeAll()" aria-label="Cerrar">×</button></div>
+  <div class="drawer-body" id="cartBody"></div>
+  <div class="drawer-foot">
+    <button class="btn btn-wa" onclick="sendOrder()">Enviar pedido por WhatsApp</button>
+    <div class="err" id="err"></div>
+  </div>
+</aside>
+
+<div class="modal" id="modal" role="dialog" aria-labelledby="mTitle">
+  <h3 id="mTitle">Así le llega el pedido a la tienda</h3>
+  <p>En la versión final este botón abre el WhatsApp de la tienda con este mensaje ya escrito.</p>
+  <div class="bubble" id="bubble"></div>
+  <div class="row">
+    <button class="btn btn-ghost" onclick="closeModal()">Cerrar</button>
+    <button class="btn btn-dark" onclick="copyMsg()">Copiar mensaje</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ===== CONFIGURACIÓN: completar con los datos reales de la tienda ===== */
+const CONFIG = {
+  whatsapp: "",          // Ej: "5492604123456" (sin + ni espacios). Vacío = modo demo.
+  tienda: "Luna Boutique"
+};
+
+/* Productos: reemplazar "img" por la ruta de la foto real (ej: "fotos/top-lino.jpg") y "precio" por el valor. */
+const PRODUCTS = [
+  {id:1, sec:"Mujer",  nombre:"Top de lino",        cat:"Tops",       icono:"top",     precio:null, talles:["S","M","L"], nuevo:true},
+  {id:2, sec:"Mujer",  nombre:"Remera rayada",      cat:"Remeras",    icono:"remera",  precio:null, talles:["S","M","L","XL"]},
+  {id:3, sec:"Mujer",  nombre:"Short de jean",      cat:"Jeans",      icono:"short",   precio:null, talles:["36","38","40","42"], nuevo:true},
+  {id:4, sec:"Mujer",  nombre:"Jean wide leg",      cat:"Jeans",      icono:"pantalon",precio:null, talles:["36","38","40","42"]},
+  {id:5, sec:"Mujer",  nombre:"Vestido negro",      cat:"Vestidos",   icono:"vestido", precio:null, talles:["S","M","L"]},
+  {id:6, sec:"Mujer",  nombre:"Remera estampada",   cat:"Remeras",    icono:"remera",  precio:null, talles:["S","M","L","XL"], nuevo:true},
+  {id:7, sec:"Mujer",  nombre:"Campera de jean",    cat:"Abrigos",    icono:"campera", precio:null, talles:["S","M","L"]},
+  {id:8, sec:"Mujer",  nombre:"Cartera",            cat:"Accesorios", icono:"cartera", precio:null, talles:["Único"]},
+  {id:9, sec:"Mujer",  nombre:"Lentes de sol",      cat:"Accesorios", icono:"lentes",  precio:null, talles:["Único"], nuevo:true},
+  {id:10,sec:"Mujer",  nombre:"Aros",               cat:"Accesorios", icono:"aros",    precio:null, talles:["Único"]},
+  {id:11,sec:"Hombre", nombre:"Remera básica",      cat:"Remeras",    icono:"remera",  precio:null, talles:["S","M","L","XL","XXL"], nuevo:true},
+  {id:12,sec:"Hombre", nombre:"Remera estampada",   cat:"Remeras",    icono:"remera",  precio:null, talles:["S","M","L","XL","XXL"]},
+  {id:13,sec:"Hombre", nombre:"Jean recto",         cat:"Jeans",      icono:"pantalon",precio:null, talles:["40","42","44","46"]},
+  {id:14,sec:"Hombre", nombre:"Bermuda de gabardina",cat:"Bermudas",  icono:"short",   precio:null, talles:["40","42","44","46"], nuevo:true},
+  {id:15,sec:"Hombre", nombre:"Campera",            cat:"Abrigos",    icono:"campera", precio:null, talles:["M","L","XL"]},
+  {id:16,sec:"Hombre", nombre:"Gorra",              cat:"Accesorios", icono:"gorra",   precio:null, talles:["Único"]},
+  {id:17,sec:"Hombre", nombre:"Cinturón",           cat:"Accesorios", icono:"cinturon",precio:null, talles:["Único"]},
+  {id:18,sec:"Hombre", nombre:"Lentes de sol",      cat:"Accesorios", icono:"lentes",  precio:null, talles:["Único"]}
+];
+const LOCALES = {Mujer:"Calle Mayor 120", Hombre:"Av. Central 845"};
+
+const ICONS = {
+  remera:'<path d="M30 25 L42 20 Q50 28 58 20 L70 25 L82 40 L72 46 L68 41 L68 82 L32 82 L32 41 L28 46 L18 40 Z"/>',
+  top:'<path d="M39 18 L39 32 Q30 40 32 50 L32 80 L68 80 L68 50 Q70 40 61 32 L61 18"/><path d="M39 32 Q50 38 61 32"/>',
+  vestido:'<path d="M41 16 L41 30 L35 44 L24 84 L76 84 L65 44 L59 30 L59 16"/><path d="M35 44 L65 44"/>',
+  pantalon:'<path d="M32 16 L68 16 L74 86 L57 86 L50 38 L43 86 L26 86 Z"/><path d="M32 24 L68 24"/>',
+  short:'<path d="M28 30 L72 30 L76 66 L55 66 L50 46 L45 66 L24 66 Z"/><path d="M28 37 L72 37"/>',
+  campera:'<path d="M30 24 L44 19 L50 30 L56 19 L70 24 L84 70 L72 72 L68 50 L68 84 L32 84 L32 50 L28 72 L16 70 Z"/><path d="M50 30 L50 84"/>',
+  cartera:'<rect x="24" y="44" width="52" height="36" rx="5"/><path d="M38 44 Q38 26 50 26 Q62 26 62 44"/>',
+  lentes:'<circle cx="34" cy="52" r="12"/><circle cx="66" cy="52" r="12"/><path d="M46 50 Q50 46 54 50 M22 49 L13 43 M78 49 L87 43"/>',
+  cinturon:'<rect x="12" y="44" width="76" height="12" rx="3"/><rect x="42" y="39" width="16" height="22" rx="2"/>',
+  gorra:'<path d="M20 62 Q20 32 50 30 Q80 32 80 62 Z"/><path d="M20 62 L92 66 Q90 72 80 70 L20 66 Z"/><circle cx="50" cy="30" r="3"/>',
+  aros:'<circle cx="37" cy="54" r="11"/><circle cx="63" cy="54" r="11"/><path d="M37 43 L37 34 M63 43 L63 34"/>'
+};
+const TONES = ["#efebe5","#e7e7e5","#ece5dc","#e2dfda"];
+
+const svgFor = (p) => `<svg viewBox="0 0 100 100" fill="none" stroke="#111" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">${ICONS[p.icono]||""}</svg>`;
+const media = (p) => p.img ? `<img src="${p.img}" alt="${p.nombre}">` : svgFor(p);
+const priceTxt = (p) => p.precio ? "$ " + p.precio.toLocaleString("es-AR") : "Consultar precio";
+
+let filter = "Todo";
+let sec = "Mujer";
+const chosen = {};
+let cart = [];
+let entrega = "Retiro en local Mujer";
+
+function renderChips(){
+  const cats = ["Todo","Nuevo",...new Set(PRODUCTS.filter(p=>p.sec===sec).map(p=>p.cat))];
+  document.getElementById("secs").innerHTML = ["Mujer","Hombre"].map(x=>`<button class="${x===sec?'on':''}" onclick="setSec('${x}')">${x}</button>`).join("");
+  document.getElementById("chips").innerHTML = cats.map(c=>`<button class="chip ${c===filter?'on':''}" onclick="setFilter('${c}')">${c}</button>`).join("");
+}
+function setSec(x){ sec=x; filter="Todo"; renderChips(); renderGrid(); }
+function setFilter(c){ filter=c; renderChips(); renderGrid(); }
+
+function renderGrid(){
+  const list = PRODUCTS.filter(p => p.sec===sec).filter(p => filter==="Todo" || (filter==="Nuevo" ? p.nuevo : p.cat===filter));
+  document.getElementById("grid").innerHTML = list.map((p,i)=>{
+    const sel = chosen[p.id] || (p.talles.length===1 ? p.talles[0] : null);
+    return `<article class="card">
+      <div class="ph" style="background:${TONES[p.id%TONES.length]}">${p.nuevo?'<span class="tag">Nuevo</span>':''}${media(p)}</div>
+      <h3>${p.nombre}</h3>
+      <div class="price">${priceTxt(p)}</div>
+      <div class="sizes">${p.talles.map(t=>`<button class="size ${sel===t?'on':''}" onclick="pickSize(${p.id},'${t}')">${t}</button>`).join("")}</div>
+      <button class="add" id="add-${p.id}" onclick="addToCart(${p.id})">Agregar</button>
+    </article>`;
+  }).join("");
+}
+
+function pickSize(id,t){ chosen[id]=t; renderGrid(); }
+
+function addToCart(id){
+  const p = PRODUCTS.find(x=>x.id===id);
+  const talle = chosen[id] || (p.talles.length===1 ? p.talles[0] : null);
+  if(!talle){ toast("Elegí un talle primero"); return; }
+  const key = id+"-"+talle;
+  const ex = cart.find(c=>c.key===key);
+  if(ex) ex.qty++; else cart.push({key,id,talle,qty:1});
+  updateCount();
+  const b = document.getElementById("add-"+id);
+  if(b){ b.classList.add("done"); b.textContent="Agregado ✓"; setTimeout(()=>{b.classList.remove("done"); b.textContent="Agregar";},1200); }
+  toast(p.nombre + " agregado");
+}
+
+function updateCount(){
+  const n = cart.reduce((s,c)=>s+c.qty,0);
+  document.getElementById("count").textContent = n;
+  document.getElementById("floatTxt").textContent = `Tu pedido (${n})`;
+  document.getElementById("floating").classList.toggle("show", n>0 && !document.getElementById("drawer").classList.contains("show"));
+}
+
+function renderCart(){
+  const body = document.getElementById("cartBody");
+  if(!cart.length){ body.innerHTML = `<div class="empty">Todavía no agregaste nada.<br><br><button class="btn btn-dark" onclick="closeAll();location.hash='catalogo'">Ver catálogo</button></div>`; return; }
+  const nameVal = document.getElementById("nombre")?.value || "";
+  body.innerHTML = cart.map(c=>{
+    const p = PRODUCTS.find(x=>x.id===c.id);
+    return `<div class="line">
+      <div class="mini" style="background:${TONES[p.id%TONES.length]}">${svgFor(p)}</div>
+      <div class="meta">${p.nombre}<small>Talle ${c.talle} · ${priceTxt(p)}</small></div>
+      <div class="qty"><button onclick="chg('${c.key}',-1)" aria-label="Quitar uno">−</button><span>${c.qty}</span><button onclick="chg('${c.key}',1)" aria-label="Sumar uno">+</button></div>
+    </div>`;
+  }).join("") + `
+    <div class="field"><label for="nombre">Tu nombre</label><input id="nombre" placeholder="Sofía" value="${nameVal.replace(/"/g,'&quot;')}" oninput="document.getElementById('err').style.display='none'"></div>
+    <div class="field"><label>Entrega</label><div class="seg" style="grid-template-columns:1fr">
+      ${["Retiro en local Mujer","Retiro en local Hombre","Envío a domicilio"].map(e=>`<button class="${entrega===e?'on':''}" onclick="setEntrega('${e}')">${e}${e.startsWith("Retiro")?` <small style="opacity:.7">· ${LOCALES[e.split(" ").pop()]}</small>`:""}</button>`).join("")}
+    </div></div>`;
+}
+function setEntrega(e){ entrega=e; renderCart(); }
+function chg(key,d){
+  const c = cart.find(x=>x.key===key); if(!c) return;
+  c.qty += d; if(c.qty<=0) cart = cart.filter(x=>x.key!==key);
+  updateCount(); renderCart();
+}
+
+function openCart(){
+  renderCart();
+  document.getElementById("err").style.display="none";
+  document.getElementById("overlay").classList.add("show");
+  document.getElementById("drawer").classList.add("show");
+  document.getElementById("floating").classList.remove("show");
+}
+function closeAll(){
+  document.getElementById("overlay").classList.remove("show");
+  document.getElementById("drawer").classList.remove("show");
+  closeModal(); updateCount();
+}
+
+function buildMsg(){
+  const nombre = (document.getElementById("nombre")?.value || "").trim();
+  const lines = cart.map(c=>{ const p = PRODUCTS.find(x=>x.id===c.id); return `• ${p.nombre} (${p.sec.toLowerCase()}) — talle ${c.talle} (x${c.qty})`; });
+  return `¡Hola ${CONFIG.tienda}! Quiero consultar por:\n${lines.join("\n")}\n\nNombre: ${nombre}\nEntrega: ${entrega}${entrega.startsWith("Retiro") ? " ("+LOCALES[entrega.split(" ").pop()]+")" : ""}\n\n(Pedido enviado desde la web)`;
+}
+
+function sendOrder(){
+  const err = document.getElementById("err");
+  if(!cart.length){ err.textContent="Agregá al menos una prenda."; err.style.display="block"; return; }
+  const nombre = (document.getElementById("nombre")?.value || "").trim();
+  if(!nombre){ err.textContent="Escribí tu nombre para que sepamos quién sos."; err.style.display="block"; document.getElementById("nombre").focus(); return; }
+  const msg = buildMsg();
+  if(CONFIG.whatsapp){
+    window.location.href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`;
+    return;
+  }
+  document.getElementById("bubble").textContent = msg;
+  document.getElementById("modal").classList.add("show");
+  document.getElementById("overlay").style.zIndex = 55;
+}
+function closeModal(){ document.getElementById("modal").classList.remove("show"); document.getElementById("overlay").style.zIndex = ""; }
+function overlayClick(){ if(document.getElementById("modal").classList.contains("show")) closeModal(); else closeAll(); }
+async function copyMsg(){
+  try{ await navigator.clipboard.writeText(buildMsg()); toast("Mensaje copiado"); }
+  catch(e){ toast("No se pudo copiar"); }
+}
+
+let tt;
+function toast(t){
+  const el = document.getElementById("toast"); el.textContent=t; el.classList.add("show");
+  clearTimeout(tt); tt=setTimeout(()=>el.classList.remove("show"),1600);
+}
+
+renderChips(); renderGrid(); updateCount();
+</script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gabriel Santarena - Portafolio</title>
+  <link rel="stylesheet" href="./Css/style.css" />
+  <!-- Íconos Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <header>
+    <div class="container header-flex">
+      <div class="info">
+        <h1>Gabriel Santarena</h1>
+        <p>Tecnicatura en Programación | Técnico Electrónico</p>
+      </div>
+      <div class="profile-photo">
+        <div class="photo-frame">
+          <img src="Imagen Gabriel.jpg" alt="Foto de Gabriel Santarena">
+        </div>
+      </div>
+    </div>
+    <nav>
+      <ul class="navigation">
+        <li><a href="#sobremi"><i class="fas fa-user"></i> Sobre mí</a></li>
+        <li><a href="#estudios"><i class="fas fa-graduation-cap"></i> Estudios</a></li>
+        <li><a href="#proyectos"><i class="fas fa-project-diagram"></i> Proyectos</a></li>
+        <li><a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="sobremi" class="section reveal">
+      <h2>Sobre mí</h2>
+      <p>
+        Me llamo Gabriel Santarena, tengo 20 años y vivo en San Rafael. Soy Técnico Electrónico egresado de la Escuela Luis Federico Leloir. 
+        Actualmente estudio la Tecnicatura en Programación Universitaria en la UTN - San Rafael.
+      </p>
+    </section>
+
+    <section class="section reveal flex-section">
+      <div id="estudios" class="card">
+  <h2>Estudios</h2>
+  
+  <div class="study-block">
+    <h3>Tecnicatura en Programación Universitaria</h3>
+    <p>UTN San Rafael</p>
+  </div>
+
+  <div class="study-block">
+    <h3>Técnico Electrónico</h3>
+    <p>Escuela Luis Federico Leloir 4-063</p>
+  </div>
+
+  <div class="study-block">
+    <h3>Automatización PLC, LOGO y Arduino</h3>
+    <p>Escuela Luis Federico Leloir 4-063</p>
+  </div>
+
+  <div class="skills">
+    <h4>Habilidades:</h4>
+    <span class="tag">HTML/CSS</span>
+    <span class="tag">JavaScript</span>
+    <span class="tag">PSeInt</span>
+    <span class="tag">Java</span>
+    <span class="tag">Python</span>
+    <span class="tag">Arduino</span>
+    <span class="tag">PLC</span>
+  </div>
+</div>
+
+    </section>
+
+    <section id="proyectos" class="section reveal">
+  <h2 style="text-align: center; border-bottom: 2px solid #1e3c72; width: max-content; margin: 0 auto 2rem;">💼 Proyectos</h2>
+
+  <div class="project-block">
+    <img src="PaginaWEB.jpg" alt="Portafolio Web">
+    <div class="project-info">
+      <h3>Portafolio Web Personal</h3>
+      <p>Desarrollado con HTML y CSS.</p>
+    </div>
+  </div>
+
+  <div class="project-block">
+    <img src="EncuestaP.jpg" alt="Programa de Votaciones">
+    <div class="project-info">
+      <h3>Programa de Encuestas</h3>
+      <p>Realizado con PSeInt para simular elecciones.</p>
+    </div>
+  </div>
+
+  <div class="project-block">
+    <img src="EmpaquetadoraP.jpg" alt="Automatización de empaquetadora">
+    <div class="project-info">
+      <h3>Automatización de empaquetadora de alfajores</h3>
+      <p>Programación en Arduino y PLC.</p>
+    </div>
+  </div>
+
+  <div class="project-block">
+    <img src="LogoP.jpg" alt="Automatización de Riego por Goteo y Proteccion Contra Heladas">
+    <div class="project-info">
+      <h3>Automatización de Riego por Goteo y Proteccion Contra Heladas</h3>
+      <p>Programación en Logo.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contacto" class="section reveal">
+  <h2 style="text-align: center; border-bottom: 2px solid #1e3c72; width: max-content; margin: 0 auto 2rem;">📬 Contactarme</h2>
+
+  <div class="card" style="max-width: 600px; margin: auto;">
+    <p><strong>Email:</strong> 
+  <a href="mailto:gabrielsantarena69@gmail.com">gabrielsantarena69@gmail.com</a>
+</p>
+<p><strong>Teléfono:</strong> 
+  <a href="https://wa.me/5492604672107" target="_blank">+54 9 2604672107</a>
+</p>
+<p><strong>GitHub:</strong>
+  <a href="https://github.com/GabrielSantarena" target="_blank">https://github.com/GabrielSantarena</a>
+</p>
+<p><strong>Linkedin:</strong>
+  <a href="https://www.linkedin.com/in/gabriel-santarena-98121227b/" target="_blank">https://www.linkedin.com/in/gabriel-santarena-98121227b/</a>
+</p>
+  </div>
+
+
+</section>
+
+  </main>
+
+  <footer>
+    <p>&copy; Martin Gabriel Santarena Ramos</p>
+  </footer>
+
+  <script>
+    function revealSections() {
+      const reveals = document.querySelectorAll(".reveal");
+      for (let i = 0; i < reveals.length; i++) {
+        const windowHeight = window.innerHeight;
+        const elementTop = reveals[i].getBoundingClientRect().top;
+        const revealPoint = 100;
+        if (elementTop < windowHeight - revealPoint) {
+          reveals[i].classList.add("active");
+        }
+      }
+    }
+    window.addEventListener("scroll", revealSections);
+    window.addEventListener("load", revealSections);
+  </script>
+</body>
+</html>
