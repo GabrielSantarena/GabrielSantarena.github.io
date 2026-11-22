@@ -165,7 +165,7 @@
     <svg class="tri" viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width=".8" aria-hidden="true"><path d="M26 6 A15 15 0 1 0 34 26 A12 12 0 1 1 26 6 Z"/></svg>
     <div class="eyebrow">Indumentaria · Mujer y hombre</div>
     <h1>Outfits para el día<br>y la noche</h1>
-    <p>Elegí tus prendas, armá tu pedido y mandalo por WhatsApp. Te atendemos personalmente.</p>
+    <p>Elige tus prendas, arma tu pedido y envíalo por WhatsApp. Te atendemos personalmente.</p>
     <a class="btn btn-light" href="#catalogo">Ver catálogo</a>
     <div class="pillars"><span>Bueno</span>·<span>Bonito</span>·<span>Barato</span></div>
   </div>
@@ -173,7 +173,7 @@
   <section id="catalogo">
     <div class="wrap">
       <h2 class="sec-title">Catálogo</h2>
-      <p class="sec-sub">Tocá "Agregar" en lo que te guste y te lo reservamos.</p>
+      <p class="sec-sub">Toca "Agregar" en lo que te guste y te lo reservamos.</p>
       <div class="secs" id="secs"></div>
       <div class="chips" id="chips"></div>
       <div class="grid" id="grid"></div>
@@ -185,9 +185,9 @@
       <h2 class="sec-title">Cómo comprar</h2>
       <p class="sec-sub">Simple, sin registrarte.</p>
       <div class="steps">
-        <div class="step"><div class="n">1</div><h3>Elegí</h3><p>Agregá las prendas que te gusten con tu talle.</p></div>
+        <div class="step"><div class="n">1</div><h3>Elige</h3><p>Agrega las prendas que te gusten con tu talla.</p></div>
         <div class="step"><div class="n">2</div><h3>Enviá tu pedido</h3><p>Se arma solo un mensaje de WhatsApp con todo lo que elegiste.</p></div>
-        <div class="step"><div class="n">3</div><h3>Coordinamos</h3><p>Te confirmamos stock, precio y si retirás o te lo enviamos.</p></div>
+        <div class="step"><div class="n">3</div><h3>Coordinamos</h3><p>Te confirmamos stock, precio y si recoges o te lo enviamos.</p></div>
       </div>
     </div>
   </section>
@@ -206,7 +206,7 @@
           <ul><li><b style="color:var(--ink);font-weight:500">Mujer:</b> Calle Mayor 120</li><li><b style="color:var(--ink);font-weight:500">Hombre:</b> Av. Central 845</li><li>Lunes a sábado, 10 a 20 h</li></ul>
         </div>
         <div class="box">
-          <h3>Seguinos</h3>
+          <h3>Síguenos</h3>
           <ul><li>@luna.boutique</li><li>Novedades y nuevos ingresos todas las semanas</li></ul>
         </div>
       </div>
@@ -255,20 +255,20 @@ const CONFIG = {
 /* Productos: reemplazar "img" por la ruta de la foto real (ej: "fotos/top-lino.jpg") y "precio" por el valor. */
 const PRODUCTS = [
   {id:1, sec:"Mujer",  nombre:"Top de lino",        cat:"Tops",       icono:"top",     precio:null, talles:["S","M","L"], nuevo:true},
-  {id:2, sec:"Mujer",  nombre:"Remera rayada",      cat:"Remeras",    icono:"remera",  precio:null, talles:["S","M","L","XL"]},
-  {id:3, sec:"Mujer",  nombre:"Short de jean",      cat:"Jeans",      icono:"short",   precio:null, talles:["36","38","40","42"], nuevo:true},
-  {id:4, sec:"Mujer",  nombre:"Jean wide leg",      cat:"Jeans",      icono:"pantalon",precio:null, talles:["36","38","40","42"]},
+  {id:2, sec:"Mujer",  nombre:"Camiseta rayada",      cat:"Camisetas",    icono:"remera",  precio:null, talles:["S","M","L","XL"]},
+  {id:3, sec:"Mujer",  nombre:"Short vaquero",      cat:"Vaqueros",      icono:"short",   precio:null, talles:["36","38","40","42"], nuevo:true},
+  {id:4, sec:"Mujer",  nombre:"Vaquero wide leg",      cat:"Vaqueros",      icono:"pantalon",precio:null, talles:["36","38","40","42"]},
   {id:5, sec:"Mujer",  nombre:"Vestido negro",      cat:"Vestidos",   icono:"vestido", precio:null, talles:["S","M","L"]},
-  {id:6, sec:"Mujer",  nombre:"Remera estampada",   cat:"Remeras",    icono:"remera",  precio:null, talles:["S","M","L","XL"], nuevo:true},
-  {id:7, sec:"Mujer",  nombre:"Campera de jean",    cat:"Abrigos",    icono:"campera", precio:null, talles:["S","M","L"]},
-  {id:8, sec:"Mujer",  nombre:"Cartera",            cat:"Accesorios", icono:"cartera", precio:null, talles:["Único"]},
+  {id:6, sec:"Mujer",  nombre:"Camiseta estampada",   cat:"Camisetas",    icono:"remera",  precio:null, talles:["S","M","L","XL"], nuevo:true},
+  {id:7, sec:"Mujer",  nombre:"Chaqueta vaquera",    cat:"Abrigos",    icono:"campera", precio:null, talles:["S","M","L"]},
+  {id:8, sec:"Mujer",  nombre:"Bolso",            cat:"Accesorios", icono:"cartera", precio:null, talles:["Único"]},
   {id:9, sec:"Mujer",  nombre:"Lentes de sol",      cat:"Accesorios", icono:"lentes",  precio:null, talles:["Único"], nuevo:true},
-  {id:10,sec:"Mujer",  nombre:"Aros",               cat:"Accesorios", icono:"aros",    precio:null, talles:["Único"]},
-  {id:11,sec:"Hombre", nombre:"Remera básica",      cat:"Remeras",    icono:"remera",  precio:null, talles:["S","M","L","XL","XXL"], nuevo:true},
-  {id:12,sec:"Hombre", nombre:"Remera estampada",   cat:"Remeras",    icono:"remera",  precio:null, talles:["S","M","L","XL","XXL"]},
-  {id:13,sec:"Hombre", nombre:"Jean recto",         cat:"Jeans",      icono:"pantalon",precio:null, talles:["40","42","44","46"]},
+  {id:10,sec:"Mujer",  nombre:"Pendientes",               cat:"Accesorios", icono:"aros",    precio:null, talles:["Único"]},
+  {id:11,sec:"Hombre", nombre:"Camiseta básica",      cat:"Camisetas",    icono:"remera",  precio:null, talles:["S","M","L","XL","XXL"], nuevo:true},
+  {id:12,sec:"Hombre", nombre:"Camiseta estampada",   cat:"Camisetas",    icono:"remera",  precio:null, talles:["S","M","L","XL","XXL"]},
+  {id:13,sec:"Hombre", nombre:"Vaquero recto",         cat:"Vaqueros",      icono:"pantalon",precio:null, talles:["40","42","44","46"]},
   {id:14,sec:"Hombre", nombre:"Bermuda de gabardina",cat:"Bermudas",  icono:"short",   precio:null, talles:["40","42","44","46"], nuevo:true},
-  {id:15,sec:"Hombre", nombre:"Campera",            cat:"Abrigos",    icono:"campera", precio:null, talles:["M","L","XL"]},
+  {id:15,sec:"Hombre", nombre:"Chaqueta",            cat:"Abrigos",    icono:"campera", precio:null, talles:["M","L","XL"]},
   {id:16,sec:"Hombre", nombre:"Gorra",              cat:"Accesorios", icono:"gorra",   precio:null, talles:["Único"]},
   {id:17,sec:"Hombre", nombre:"Cinturón",           cat:"Accesorios", icono:"cinturon",precio:null, talles:["Único"]},
   {id:18,sec:"Hombre", nombre:"Lentes de sol",      cat:"Accesorios", icono:"lentes",  precio:null, talles:["Único"]}
@@ -327,7 +327,7 @@ function pickSize(id,t){ chosen[id]=t; renderGrid(); }
 function addToCart(id){
   const p = PRODUCTS.find(x=>x.id===id);
   const talle = chosen[id] || (p.talles.length===1 ? p.talles[0] : null);
-  if(!talle){ toast("Elegí un talle primero"); return; }
+  if(!talle){ toast("Elige una talla primero"); return; }
   const key = id+"-"+talle;
   const ex = cart.find(c=>c.key===key);
   if(ex) ex.qty++; else cart.push({key,id,talle,qty:1});
@@ -346,13 +346,13 @@ function updateCount(){
 
 function renderCart(){
   const body = document.getElementById("cartBody");
-  if(!cart.length){ body.innerHTML = `<div class="empty">Todavía no agregaste nada.<br><br><button class="btn btn-dark" onclick="closeAll();location.hash='catalogo'">Ver catálogo</button></div>`; return; }
+  if(!cart.length){ body.innerHTML = `<div class="empty">Todavía no has agregado nada.<br><br><button class="btn btn-dark" onclick="closeAll();location.hash='catalogo'">Ver catálogo</button></div>`; return; }
   const nameVal = document.getElementById("nombre")?.value || "";
   body.innerHTML = cart.map(c=>{
     const p = PRODUCTS.find(x=>x.id===c.id);
     return `<div class="line">
       <div class="mini" style="background:${TONES[p.id%TONES.length]}">${svgFor(p)}</div>
-      <div class="meta">${p.nombre}<small>Talle ${c.talle} · ${priceTxt(p)}</small></div>
+      <div class="meta">${p.nombre}<small>Talla ${c.talle} · ${priceTxt(p)}</small></div>
       <div class="qty"><button onclick="chg('${c.key}',-1)" aria-label="Quitar uno">−</button><span>${c.qty}</span><button onclick="chg('${c.key}',1)" aria-label="Sumar uno">+</button></div>
     </div>`;
   }).join("") + `
@@ -383,15 +383,15 @@ function closeAll(){
 
 function buildMsg(){
   const nombre = (document.getElementById("nombre")?.value || "").trim();
-  const lines = cart.map(c=>{ const p = PRODUCTS.find(x=>x.id===c.id); return `• ${p.nombre} (${p.sec.toLowerCase()}) — talle ${c.talle} (x${c.qty})`; });
+  const lines = cart.map(c=>{ const p = PRODUCTS.find(x=>x.id===c.id); return `• ${p.nombre} (${p.sec.toLowerCase()}) — talla ${c.talle} (x${c.qty})`; });
   return `¡Hola ${CONFIG.tienda}! Quiero consultar por:\n${lines.join("\n")}\n\nNombre: ${nombre}\nEntrega: ${entrega}${entrega.startsWith("Retiro") ? " ("+LOCALES[entrega.split(" ").pop()]+")" : ""}\n\n(Pedido enviado desde la web)`;
 }
 
 function sendOrder(){
   const err = document.getElementById("err");
-  if(!cart.length){ err.textContent="Agregá al menos una prenda."; err.style.display="block"; return; }
+  if(!cart.length){ err.textContent="Agrega al menos una prenda."; err.style.display="block"; return; }
   const nombre = (document.getElementById("nombre")?.value || "").trim();
-  if(!nombre){ err.textContent="Escribí tu nombre para que sepamos quién sos."; err.style.display="block"; document.getElementById("nombre").focus(); return; }
+  if(!nombre){ err.textContent="Escribe tu nombre para saber quién eres."; err.style.display="block"; document.getElementById("nombre").focus(); return; }
   const msg = buildMsg();
   if(CONFIG.whatsapp){
     window.location.href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`;

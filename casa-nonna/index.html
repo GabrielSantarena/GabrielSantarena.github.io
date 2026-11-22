@@ -138,7 +138,7 @@
 <section class="hero">
   <span class="open">Abierto hoy · 11:30 a 23 h</span>
   <h1>Comida casera,<br><em>lista para llevar</em></h1>
-  <p>Elegí del menú, armá tu pedido y mandalo por WhatsApp. Retirás en el local o te lo llevamos.</p>
+  <p>Elige del menú, arma tu pedido y envíalo por WhatsApp. Recoges en el local o te lo llevamos.</p>
   <div class="facts"><span class="fact">Av. del Parque 210</span><span class="fact">Retiro y envío</span><span class="fact">Efectivo y transferencia</span></div>
 </section>
 
@@ -265,7 +265,7 @@ function refresh(){
 function renderCart(){
   const body = document.getElementById("cartBody");
   const keep = {nombre:val("nombre"), dir:val("dir"), nota:val("nota")};
-  if(!units()){ body.innerHTML = `<div class="empty">Todavía no agregaste nada.</div>`; return; }
+  if(!units()){ body.innerHTML = `<div class="empty">Todavía no has agregado nada.</div>`; return; }
   const envio = entrega==="Envío a domicilio" ? CONFIG.envio : 0;
   body.innerHTML = Object.entries(cart).map(([id,q])=>{ const m=MENU.find(x=>x.id==id);
     return `<div class="line"><div class="n">${m.nombre}<small>${m.precio==null?"Precio a confirmar":money(m.precio)+" c/u"}</small></div>
@@ -304,9 +304,9 @@ function buildMsg(){
 function sendOrder(){
   const err = document.getElementById("err");
   const fail = (t,id)=>{ err.textContent=t; err.style.display="block"; if(id) document.getElementById(id)?.focus(); };
-  if(!units()) return fail("Agregá al menos un plato.");
-  if(!val("nombre").trim()) return fail("Escribí tu nombre.","nombre");
-  if(entrega==="Envío a domicilio" && !val("dir").trim()) return fail("Escribí la dirección de entrega.","dir");
+  if(!units()) return fail("Agrega al menos un plato.");
+  if(!val("nombre").trim()) return fail("Escribe tu nombre.","nombre");
+  if(entrega==="Envío a domicilio" && !val("dir").trim()) return fail("Escribe la dirección de entrega.","dir");
   err.style.display="none";
   const msg = buildMsg();
   if(CONFIG.whatsapp){ window.location.href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`; return; }
